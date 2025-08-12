@@ -6,6 +6,7 @@ import BookingCard from "./_components/BookingCard";
 import Footer from "./_components/Footer";
 import { Header } from "./_components/Header";
 import { Button } from "./_components/ui/button";
+import { quickSearchOptions } from "./_constants/quickSearchOptions";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
 const Home = () => {
   return (
@@ -23,6 +24,18 @@ const Home = () => {
           <Button className="h-9 w-10">
             <SearchIcon size={5} />
           </Button>
+        </div>
+        <div className="no-scrollbar mb-6 flex items-center gap-3 overflow-auto">
+          {quickSearchOptions.map((item) => (
+            <Button
+              key={item.label}
+              variant={"secondary"}
+              className="py-2. h-fit border border-gray-700 px-4 py-[11px] text-sm font-bold"
+            >
+              {item.imageUrl}
+              {item.label}
+            </Button>
+          ))}
         </div>
         <div className="relative h-[150px] w-full overflow-clip rounded-[10px]">
           <Image
