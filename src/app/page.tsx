@@ -3,6 +3,7 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import BarberCard from "./_components/BarberCard";
 import BookingCard from "./_components/BookingCard";
+import Footer from "./_components/Footer";
 import { Header } from "./_components/Header";
 import { Button } from "./_components/ui/button";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
@@ -107,6 +108,7 @@ const Home = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };
