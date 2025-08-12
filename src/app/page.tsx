@@ -1,6 +1,7 @@
 import { Input } from "@/_components/ui/input";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
+import BarberCard from "./_components/BarberCard";
 import BookingCard from "./_components/BookingCard";
 import { Header } from "./_components/Header";
 import { Button } from "./_components/ui/button";
@@ -45,6 +46,65 @@ const Home = () => {
           <h5 className="mb-3 text-xs font-bold uppercase text-gray-300">
             Recomendados
           </h5>
+          <div className="no-scrollbar flex gap-4 overflow-x-auto">
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+          </div>
+        </div>
+        <div className="mt-6">
+          <h5 className="mb-3 text-xs font-bold uppercase text-gray-300">
+            Populares
+          </h5>
+          <div className="no-scrollbar flex gap-4 overflow-x-auto">
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+            <BarberCard
+              name="Felipe Moura"
+              address="Rua 1, 123"
+              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+            />
+          </div>
         </div>
       </main>
     </>
