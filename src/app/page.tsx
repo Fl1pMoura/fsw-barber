@@ -3,12 +3,19 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import BarberCard from "./_components/BarberCard";
 import BookingCard from "./_components/BookingCard";
-import Footer from "./_components/Footer";
 import { Header } from "./_components/Header";
 import { Button } from "./_components/ui/button";
 import { quickSearchOptions } from "./_constants/quickSearchOptions";
+import { db } from "./_lib/prisma";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
-const Home = () => {
+const Home = async () => {
+  const barberShops = await db.barbershop.findMany();
+  const barberShopsSorted = await db.barbershop.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
   return (
     <>
       <Header />
@@ -42,7 +49,7 @@ const Home = () => {
             alt="Agende nos melhores com FSW Barber"
             src={"/banner-home.png"}
             fill
-            objectFit="cover"
+            className="object-cover"
           />
         </div>
         <div className="mt-6">
@@ -61,31 +68,15 @@ const Home = () => {
             Recomendados
           </h5>
           <div className="no-scrollbar flex gap-4 overflow-x-auto">
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
+            {barberShops.map((barberShop) => (
+              <BarberCard
+                key={barberShop.id}
+                name={barberShop.name}
+                address={barberShop.address}
+                imageUrl={barberShop.imageUrl}
+                id={barberShop.id}
+              />
+            ))}
           </div>
         </div>
         <div className="mt-6">
@@ -93,35 +84,18 @@ const Home = () => {
             Populares
           </h5>
           <div className="no-scrollbar flex gap-4 overflow-x-auto">
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
-            <BarberCard
-              name="Felipe Moura"
-              address="Rua 1, 123"
-              imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            />
+            {barberShopsSorted.map((barberShop) => (
+              <BarberCard
+                key={barberShop.id}
+                name={barberShop.name}
+                address={barberShop.address}
+                imageUrl={barberShop.imageUrl}
+                id={barberShop.id}
+              />
+            ))}
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
