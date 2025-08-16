@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { Toaster } from "sonner";
 import Footer from "./_components/Footer";
+import AuthProvider from "./_providers/AuthProvider";
 import "./globals.css";
 
 const nunito = Nunito({ subsets: ["latin"] });
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${nunito.className} antialiased`}>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
         <Toaster />
         <Footer />
       </body>
