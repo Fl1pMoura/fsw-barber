@@ -19,8 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${nunito.className} antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${nunito.className} flex flex-col antialiased`}>
+        <AuthProvider>
+          <div className="flex-1">{children}</div>
+        </AuthProvider>
         <Toaster />
         <Footer />
       </body>

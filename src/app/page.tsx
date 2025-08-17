@@ -1,10 +1,9 @@
-import { Input } from "@/_components/ui/input";
-import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import BarberCard from "./_components/BarberCard";
 import BookingCard from "./_components/BookingCard";
 import { Header } from "./_components/Header";
-import { Button } from "./_components/ui/button";
+import SearchInput from "./_components/SearchInput";
+import ServicesButton from "./_components/ServicesButton";
 import { quickSearchOptions } from "./_constants/quickSearchOptions";
 import { db } from "./_lib/prisma";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
@@ -22,26 +21,22 @@ const Home = async () => {
       <main className="px-5">
         <div className="py-6">
           <h1 className="mb-1 text-xl">
-            Olá, Felipe <strong>Faça seu Login</strong>
+            Olá, <strong>Faça seu Login</strong>
           </h1>
           <p className="text-sm">Sexta, 2 de Fevereiro</p>
         </div>
-        <div className="mb-6 flex items-center gap-2">
-          <Input placeholder="Buscar" />
-          <Button className="h-9 w-10">
-            <SearchIcon size={5} />
-          </Button>
+        <div className="mb-6">
+          <SearchInput />
         </div>
         <div className="no-scrollbar mb-6 flex items-center gap-3 overflow-auto">
           {quickSearchOptions.map((item) => (
-            <Button
+            <ServicesButton
               key={item.label}
-              variant={"secondary"}
-              className="py-2. h-fit border border-gray-700 px-4 py-[11px] text-sm font-bold"
-            >
-              {item.imageUrl}
-              {item.label}
-            </Button>
+              item={{
+                label: item.label,
+                imageUrl: item.imageUrl,
+              }}
+            />
           ))}
         </div>
         <div className="relative h-[150px] w-full overflow-clip rounded-[10px]">

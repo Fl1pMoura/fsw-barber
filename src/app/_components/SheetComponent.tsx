@@ -1,6 +1,7 @@
 "use client";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -18,6 +19,7 @@ import {
 
 import { Calendar1Icon, HomeIcon, LogIn, LogOutIcon } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { quickSearchOptions } from "../_constants/quickSearchOptions";
 import GoogleIcon from "./svgs/googleIcon";
@@ -26,6 +28,8 @@ import { DialogHeader } from "./ui/dialog";
 
 const SheetComponent = ({ children }: { children: ReactNode }) => {
   const { data } = useSession();
+  const router = useRouter();
+
   function handleSignOut() {
     signOut();
   }
@@ -42,13 +46,13 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
             <div className="flex items-center gap-3">
               <Avatar className="size-12 border-2 border-primary">
                 <AvatarImage
-                  alt="FSW Barber"
-                  src="https://utfs.io/f/8a457cda-f768-411d-a737-cdb23ca6b9b5-b3pegf.png"
+                  alt={data.user.name || ""}
+                  src={data.user.image || ""}
                 />
               </Avatar>
               <div>
-                <p className="text-base font-bold">Felipe Moura</p>
-                <p className="text-xs">felipe.moura@fsw.com</p>
+                <p className="text-base font-bold">{data.user.name}</p>
+                <p className="text-xs">{data.user.email}</p>
               </div>
             </div>
           ) : (
@@ -95,14 +99,19 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
         </div>
         <div className="flex flex-col gap-1 border-b py-6">
           {quickSearchOptions.map((item) => (
-            <Button
-              key={item.label}
-              variant={"ghost"}
-              className="flex min-h-11 w-full items-center justify-start gap-3"
-            >
-              {item.imageUrl}
-              {item.label}
-            </Button>
+            <SheetClose asChild key={item.label}>
+              <Button
+                onClick={() => {
+                  router.push(`/barber-shop?service=${item.label}`);
+                }}
+                key={item.label}
+                variant={"ghost"}
+                className="flex min-h-11 w-full items-center justify-start gap-3"
+              >
+                {item.imageUrl}
+                {item.label}
+              </Button>
+            </SheetClose>
           ))}
         </div>
         <div className="flex flex-col gap-1 py-6">
