@@ -5,15 +5,11 @@ import { Header } from "./_components/Header";
 import SearchInput from "./_components/SearchInput";
 import ServicesButton from "./_components/ServicesButton";
 import { quickSearchOptions } from "./_constants/quickSearchOptions";
-import { db } from "./_lib/prisma";
+import { getBarberShops, getBarberShopsSorted } from "./_dal/get-barberShops";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
 const Home = async () => {
-  const barberShops = await db.barbershop.findMany();
-  const barberShopsSorted = await db.barbershop.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  });
+  const barberShops = await getBarberShops();
+  const barberShopsSorted = await getBarberShopsSorted();
 
   return (
     <>
@@ -21,7 +17,7 @@ const Home = async () => {
       <main className="px-5">
         <div className="py-6">
           <h1 className="mb-1 text-xl">
-            Olá, <strong>Faça seu Login</strong>
+            Olá, <strong></strong>
           </h1>
           <p className="text-sm">Sexta, 2 de Fevereiro</p>
         </div>

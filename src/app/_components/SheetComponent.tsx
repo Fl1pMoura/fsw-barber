@@ -12,19 +12,16 @@ import { Avatar, AvatarImage } from "@/_components/ui/avatar";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogTitle,
   DialogTrigger,
 } from "@/app/_components/ui/dialog";
 
 import { Calendar1Icon, HomeIcon, LogIn, LogOutIcon } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { quickSearchOptions } from "../_constants/quickSearchOptions";
-import GoogleIcon from "./svgs/googleIcon";
+import LoginDialog from "./LoginDialog";
 import { Button } from "./ui/button";
-import { DialogHeader } from "./ui/dialog";
 
 const SheetComponent = ({ children }: { children: ReactNode }) => {
   const { data } = useSession();
@@ -33,13 +30,10 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
   function handleSignOut() {
     signOut();
   }
-  function handleSignIn() {
-    signIn("google");
-  }
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-auto">
         <SheetHeader className="border-b pb-6 text-start">
           <SheetTitle className="mb-8 text-lg font-black">Menu</SheetTitle>
           {data?.user ? (
@@ -52,7 +46,7 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
               </Avatar>
               <div>
                 <p className="text-base font-bold">{data.user.name}</p>
-                <p className="text-xs">{data.user.email}</p>
+                <p className="break-all text-xs">{data.user.email}</p>
               </div>
             </div>
           ) : (
@@ -65,16 +59,7 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-[318px] rounded-[10px] border-none">
-                  <DialogHeader className="">
-                    <DialogTitle>Faça login na plataforma</DialogTitle>
-                    <DialogDescription className="mt-2 block">
-                      Conecte-se usando sua conta do Google
-                    </DialogDescription>
-                  </DialogHeader>
-                  <Button onClick={handleSignIn} variant={"outline"}>
-                    <GoogleIcon />
-                    Google
-                  </Button>
+                  <LoginDialog />
                 </DialogContent>
               </Dialog>
             </div>
@@ -97,7 +82,7 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
             Agendamentos
           </Button>
         </div>
-        <div className="flex flex-col gap-1 border-b py-6">
+        <div className="flex flex-col gap-1 py-6">
           {quickSearchOptions.map((item) => (
             <SheetClose asChild key={item.label}>
               <Button
@@ -114,16 +99,18 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
             </SheetClose>
           ))}
         </div>
-        <div className="flex flex-col gap-1 py-6">
-          <Button
-            onClick={handleSignOut}
-            variant={"ghost"}
-            className="flex min-h-11 w-full items-center justify-start gap-3"
-          >
-            <LogOutIcon className="size-4" />
-            Sair da conta
-          </Button>
-        </div>
+        {data?.user && (
+          <div className="flex flex-col gap-1 border-t py-6">
+            <Button
+              onClick={handleSignOut}
+              variant={"ghost"}
+              className="flex min-h-11 w-full items-center justify-start gap-3"
+            >
+              <LogOutIcon className="size-4" />
+              Sair da conta
+            </Button>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );

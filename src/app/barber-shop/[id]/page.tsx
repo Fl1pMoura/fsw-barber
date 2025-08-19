@@ -2,7 +2,7 @@ import PhoneList from "@/app/_components/PhoneList";
 import ServiceCard from "@/app/_components/ServicesCard";
 import SheetComponent from "@/app/_components/SheetComponent";
 import { Button } from "@/app/_components/ui/button";
-import { db } from "@/app/_lib/prisma";
+import { getBarberShopById } from "@/app/_dal/get-barberShops";
 import { ChevronLeft, MapPin, MenuIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,14 +14,7 @@ interface IBarberShopProps {
 }
 
 const BarberShop = async ({ params }: IBarberShopProps) => {
-  const barberShop = await db.barbershop.findUnique({
-    where: {
-      id: params.id,
-    },
-    include: {
-      services: true,
-    },
-  });
+  const barberShop = await getBarberShopById(params.id);
 
   if (!barberShop) {
     return <h1>Barber shop not found</h1>;

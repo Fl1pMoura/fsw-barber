@@ -1,8 +1,8 @@
 import BarberCard from "../_components/BarberCard";
 import { Header } from "../_components/Header";
-import { db } from "../_lib/prisma";
+import { getBarberShopServices } from "../_dal/get-barberShops";
 
-interface IBarberShopPage {
+export interface IBarberShopPage {
   searchParams: {
     service: string;
     name: string;
@@ -10,31 +10,7 @@ interface IBarberShopPage {
 }
 
 const BarberShop = async ({ searchParams }: IBarberShopPage) => {
-  console.log(searchParams);
-
-  const barberShops = await db.barbershop.findMany({
-    where: {
-      OR: [
-        searchParams.name
-          ? {
-              name: {
-                contains: searchParams.name,
-                mode: "insensitive",
-              },
-            }
-          : {
-              services: {
-                some: {
-                  name: {
-                    contains: searchParams.service,
-                    mode: "insensitive",
-                  },
-                },
-              },
-            },
-      ],
-    },
-  });
+  const barberShops = await getBarberShopServices({ searchParams });
 
   return (
     <div>
