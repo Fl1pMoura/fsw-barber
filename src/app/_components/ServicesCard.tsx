@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/_components/ui/card";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
+import BookingSheet from "./BookingSheet";
 import LoginDialog from "./LoginDialog";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent } from "./ui/dialog";
@@ -12,6 +13,7 @@ interface IServiceCardProps {
   service: string;
   description: string;
   price: number;
+  serviceId: string;
 }
 
 const ServiceCard = ({
@@ -19,6 +21,7 @@ const ServiceCard = ({
   imageUrl,
   price,
   service,
+  serviceId,
 }: IServiceCardProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { data } = useSession();
@@ -27,7 +30,6 @@ const ServiceCard = ({
       setIsDialogOpen(true);
       return;
     }
-    console.log("data?.user", data?.user);
   }
 
   return (
@@ -49,9 +51,14 @@ const ServiceCard = ({
                   currency: "BRL",
                 }).format(price)}
               </span>
-              <Button onClick={handleBookingButtonClick} variant={"secondary"}>
-                Reservar
-              </Button>
+              <BookingSheet serviceId={serviceId}>
+                <Button
+                  onClick={handleBookingButtonClick}
+                  variant={"secondary"}
+                >
+                  Reservar
+                </Button>
+              </BookingSheet>
             </div>
           </div>
         </CardContent>

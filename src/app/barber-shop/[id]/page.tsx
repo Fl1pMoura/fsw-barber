@@ -77,6 +77,7 @@ const BarberShop = async ({ params }: IBarberShopProps) => {
               service={service.name}
               description={service.description}
               price={Number(service.price)}
+              serviceId={service.id}
             />
           ))}
         </div>

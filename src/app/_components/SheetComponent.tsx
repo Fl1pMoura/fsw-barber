@@ -35,7 +35,7 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="overflow-auto">
         <SheetHeader className="border-b pb-6 text-start">
-          <SheetTitle className="mb-8 text-lg font-black">Menu</SheetTitle>
+          <SheetTitle className="mb-8 text-lg font-bold">Menu</SheetTitle>
           {data?.user ? (
             <div className="flex items-center gap-3">
               <Avatar className="size-12 border-2 border-primary">
