@@ -6,10 +6,12 @@ import SearchInput from "./_components/SearchInput";
 import ServicesButton from "./_components/ServicesButton";
 import { quickSearchOptions } from "./_constants/quickSearchOptions";
 import { getBarberShops, getBarberShopsSorted } from "./_dal/get-barberShops";
+import { auth } from "./_lib/auth";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
 const Home = async () => {
   const barberShops = await getBarberShops();
   const barberShopsSorted = await getBarberShopsSorted();
+  const user = await auth();
 
   return (
     <>
@@ -17,7 +19,16 @@ const Home = async () => {
       <main className="px-5">
         <div className="py-6">
           <h1 className="mb-1 text-xl">
-            Olá, <strong></strong>
+            {user?.user?.name && (
+              <>
+                Olá, <strong>{user?.user?.name}</strong>
+              </>
+            )}
+            {!user?.user?.name && (
+              <>
+                <strong>Faça seu login para reservar um horário.</strong>
+              </>
+            )}
           </h1>
           <p className="text-sm">Sexta, 2 de Fevereiro</p>
         </div>

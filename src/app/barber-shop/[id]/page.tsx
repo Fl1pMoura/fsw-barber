@@ -73,11 +73,15 @@ const BarberShop = async ({ params }: IBarberShopProps) => {
           {barberShop.services.map((service) => (
             <ServiceCard
               key={service.id}
-              imageUrl={service.imageUrl}
-              service={service.name}
-              description={service.description}
-              price={Number(service.price)}
-              serviceId={service.id}
+              barberShop={barberShop}
+              service={{
+                id: service.id,
+                name: service.name,
+                price: Number(service.price),
+                description: service.description,
+                imageUrl: service.imageUrl,
+                barbershopId: service.barbershopId,
+              }}
             />
           ))}
         </div>
