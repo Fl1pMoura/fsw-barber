@@ -6,11 +6,13 @@ import SearchInput from "./_components/SearchInput";
 import ServicesButton from "./_components/ServicesButton";
 import { quickSearchOptions } from "./_constants/quickSearchOptions";
 import { getBarberShops, getBarberShopsSorted } from "./_dal/get-barberShops";
+import { getConfirmedBookings } from "./_dal/get-bookings";
 import { auth } from "./_lib/auth";
 // TODO: AJUSTAR CAMINHO DO BOTÃO
 const Home = async () => {
   const barberShops = await getBarberShops();
   const barberShopsSorted = await getBarberShopsSorted();
+  const bookings = await getConfirmedBookings();
   const user = await auth();
 
   return (
@@ -58,12 +60,11 @@ const Home = async () => {
           <h5 className="mb-3 text-xs font-bold uppercase text-gray-300">
             Agendamentos
           </h5>
-          <BookingCard
-            status="Confirmado"
-            service="Corte de cabelo"
-            imageUrl="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
-            barberShopName="Barbearia FSW"
-          />
+          <div className="no-scrollbar flex gap-3 overflow-x-auto">
+            {bookings.map((booking) => (
+              <BookingCard key={booking.id} booking={booking} />
+            ))}
+          </div>
         </div>
         <div className="mt-6">
           <h5 className="mb-3 text-xs font-bold uppercase text-gray-300">
