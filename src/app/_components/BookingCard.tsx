@@ -61,7 +61,7 @@ const BookingCard = ({ booking }: IBookingCardProps) => {
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
       <SheetTrigger asChild>
-        <Card className="w-[75%] min-w-[75%] cursor-pointer">
+        <Card className="cursor-pointer">
           <CardContent className="flex h-full justify-between p-0">
             <div className="w-full p-3">
               {bookingStatus() && (
@@ -171,7 +171,7 @@ const BookingCard = ({ booking }: IBookingCardProps) => {
           </div>
           <div className="mb-6 mt-auto flex items-center gap-3">
             <SheetTrigger asChild>
-              <Button className="w-full" variant={"default"}>
+              <Button className="w-full" variant={"secondary"}>
                 Voltar
               </Button>
             </SheetTrigger>
