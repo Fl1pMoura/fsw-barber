@@ -17,6 +17,7 @@ import {
 
 import { Calendar1Icon, HomeIcon, LogIn, LogOutIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { quickSearchOptions } from "../_constants/quickSearchOptions";
@@ -69,17 +70,23 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
           <Button
             className="flex min-h-11 w-full items-center justify-start gap-3"
             variant={"ghost"}
+            asChild
           >
-            <HomeIcon className="size-4" />
-            Ínicio
+            <Link href={"/"}>
+              <HomeIcon className="size-4" />
+              Ínicio
+            </Link>
           </Button>
 
           <Button
             className="flex min-h-11 w-full items-center justify-start gap-3"
             variant={"ghost"}
+            asChild
           >
-            <Calendar1Icon className="size-4" />
-            Agendamentos
+            <Link href="/bookings">
+              <Calendar1Icon className="size-4" />
+              Agendamentos
+            </Link>
           </Button>
         </div>
         <div className="flex flex-col gap-1 py-6">

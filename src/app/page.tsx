@@ -62,7 +62,14 @@ const Home = async () => {
           </h5>
           <div className="no-scrollbar flex gap-3 overflow-x-auto">
             {bookings.map((booking) => (
-              <BookingCard key={booking.id} booking={booking} />
+              <div
+                key={booking.id}
+                className={
+                  bookings.length > 1 ? "w-[75%] min-w-[75%]" : "w-full"
+                }
+              >
+                <BookingCard booking={booking} />
+              </div>
             ))}
           </div>
         </div>
