@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSW Barber
 
-## Getting Started
+**Agende seu corte com os melhores barbeiros da cidade**
 
-First, run the development server:
+## 📱 Sobre o Projeto
+
+FSW Barber é uma aplicação web moderna para agendamento de serviços em barbearias. Desenvolvida com as mais recentes tecnologias web, a plataforma permite que usuários encontrem barbearias próximas, visualizem serviços disponíveis e realizem agendamentos de forma rápida e intuitiva.
+
+## ✨ Funcionalidades
+
+- **Autenticação com Google**: Login rápido e seguro utilizando sua conta Google
+- **Catálogo de Barbearias**: Explore as melhores barbearias disponíveis
+- **Busca por Serviços**: Encontre serviços específicos como corte de cabelo, barba, etc.
+- **Agendamento Online**: Escolha data e horário disponíveis para seu atendimento
+- **Gerenciamento de Reservas**: Visualize e gerencie seus agendamentos
+- **Interface Responsiva**: Experiência otimizada para dispositivos móveis e desktop
+
+## 🚀 Tecnologias
+
+O projeto foi desenvolvido com as seguintes tecnologias:
+
+- **Next.js 14** - Framework React com Server-Side Rendering
+- **React** - Biblioteca JavaScript para construção de interfaces
+- **TypeScript** - Superset JavaScript com tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **Prisma** - ORM para acesso ao banco de dados
+- **PostgreSQL** - Banco de dados relacional
+- **NextAuth.js** - Autenticação para aplicações Next.js
+- **Radix UI** - Componentes acessíveis e sem estilo
+- **Lucide React** - Ícones bonitos e consistentes
+- **date-fns** - Biblioteca para manipulação de datas
+- **Zod** - Validação de esquemas TypeScript
+
+## 🔧 Instalação
 
 ```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/fswbarber.git
+
+# Acesse a pasta do projeto
+cd fswbarber
+
+# Instale as dependências
+npm install
+# ou
+pnpm install
+
+# Configure as variáveis de ambiente
+# Crie um arquivo .env baseado no .env.example
+
+# Execute as migrações do banco de dados
+npm run db:migrate
+
+# Popule o banco de dados com dados iniciais
+npm run db:seed
+
+# Inicie o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Ambiente de Produção
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para construir a versão de produção:
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Licença
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👨‍💻 Autor
 
-## Deploy on Vercel
+Feito com ❤️ por **Felipe Moura**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Agende seu horário agora mesmo e experimente o melhor serviço de barbearia!**
