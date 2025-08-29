@@ -73,7 +73,7 @@ const BarberShop = async ({ params }: IBarberShopProps) => {
           {barberShop.services.map((service) => (
             <ServiceCard
               key={service.id}
-              barberShop={barberShop}
+              barberShop={JSON.parse(JSON.stringify(barberShop))}
               service={{
                 id: service.id,
                 name: service.name,
@@ -91,8 +91,8 @@ const BarberShop = async ({ params }: IBarberShopProps) => {
           Contato
         </h4>
         <div className="space-y-3">
-          {barberShop.phones.map((phone) => (
-            <PhoneList key={phone + Math.random()} phone={phone} />
+          {barberShop.phones.map((phone, index) => (
+            <PhoneList key={`phone-${index}-${phone}`} phone={phone} />
           ))}
         </div>
       </div>
