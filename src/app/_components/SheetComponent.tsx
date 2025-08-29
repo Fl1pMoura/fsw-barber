@@ -77,17 +77,28 @@ const SheetComponent = ({ children }: { children: ReactNode }) => {
               Ínicio
             </Link>
           </Button>
-
-          <Button
-            className="flex min-h-11 w-full items-center justify-start gap-3"
-            variant={"ghost"}
-            asChild
-          >
-            <Link href="/bookings">
+          {data?.user && (
+            <Button
+              className="flex min-h-11 w-full items-center justify-start gap-3"
+              variant={"ghost"}
+              asChild
+            >
+              <Link href="/bookings">
+                <Calendar1Icon className="size-4" />
+                Agendamentos
+              </Link>
+            </Button>
+          )}
+          {!data?.user && (
+            <Button
+              className="flex min-h-11 w-full items-center justify-start gap-3"
+              variant={"ghost"}
+              disabled
+            >
               <Calendar1Icon className="size-4" />
               Agendamentos
-            </Link>
-          </Button>
+            </Button>
+          )}
         </div>
         <div className="flex flex-col gap-1 py-6">
           {quickSearchOptions.map((item) => (

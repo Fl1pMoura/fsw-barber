@@ -44,7 +44,6 @@ const BookingSheet = ({
     BOOKINGS_AVAILABLE[0],
   );
   const [bookings, setBookings] = useState<Booking[]>([]);
-  console.log(bookings);
 
   const getTimeList = (bookings: Booking[]) => {
     return BOOKINGS_AVAILABLE.filter((time) => {
@@ -68,7 +67,6 @@ const BookingSheet = ({
     const fetch = async () => {
       const res = await getBookings({
         date: selectedDate,
-        serviceId: service.id,
       });
       setBookings(res);
     };
