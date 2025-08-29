@@ -11,7 +11,7 @@ import {
 } from "@/_components/ui/sheet";
 import { Prisma } from "@prisma/client";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { format } from "date-fns";
+import { format, isFuture } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
 import { useState } from "react";
@@ -40,12 +40,7 @@ interface IBookingCardProps {
 
 const BookingCard = ({ booking }: IBookingCardProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const bookingStatus = () => {
-    if (booking.date < new Date()) {
-      return "Finalizado";
-    }
-    return "Confirmado";
-  };
+  const isFinished = isFuture(booking.date);
 
   async function handleCancelBooking() {
     try {
@@ -64,13 +59,9 @@ const BookingCard = ({ booking }: IBookingCardProps) => {
         <Card className="cursor-pointer">
           <CardContent className="flex h-full justify-between p-0">
             <div className="w-full p-3">
-              {bookingStatus() && (
-                <Badge
-                  variant={
-                    bookingStatus() === "Confirmado" ? "default" : "secondary"
-                  }
-                >
-                  {bookingStatus()}
+              {!isFinished && (
+                <Badge variant={isFinished ? "default" : "secondary"}>
+                  {isFinished ? "Confirmado" : "Finalizado"}
                 </Badge>
               )}
               <h5 className="mb-2 mt-3">{booking.service.name}</h5>
@@ -125,9 +116,9 @@ const BookingCard = ({ booking }: IBookingCardProps) => {
           </div>
           <Badge
             className="mb-3 mt-6 w-fit"
-            variant={bookingStatus() === "Confirmado" ? "default" : "secondary"}
+            variant={isFinished ? "default" : "secondary"}
           >
-            {bookingStatus()}
+            {isFinished ? "Confirmado" : "Finalizado"}
           </Badge>
           <Card className="space-y-3 p-3">
             <div className="flex items-center justify-between">
